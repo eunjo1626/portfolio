@@ -1,0 +1,407 @@
+/* ======================
+   기본 리셋 (Project 전용)
+====================== */
+
+.project-wrapper {
+  position: relative;
+  width: 100%;
+  animation: projectEnter 1s ease-out both;
+}
+@keyframes projectEnter {
+  0% {
+    opacity: 0;
+    transform: translateY(40px) scale(0.98);
+    filter: blur(6px);
+  }
+  60% {
+    opacity: 1;
+    filter: blur(0);
+  }
+  100% {
+    transform: translateY(0) scale(1);
+  }
+}
+
+.project-wrapper::before {
+   content: "";
+  position: fixed;
+  inset: 0;
+
+  background:
+    /* 종이 미세 질감 */
+    repeating-linear-gradient(
+      0deg,
+      rgba(0,0,0,0.02),
+      rgba(0,0,0,0.02) 1px,
+      transparent 1px,
+      transparent 3px
+    ),
+    #f1f1ee; /* 종이톤 */
+
+  transform-origin: top;
+  animation: paperReveal 0.9s ease-out forwards;
+
+  pointer-events: none;
+  z-index: 1;
+}
+
+@keyframes paperReveal {
+  0% {
+    transform: scaleY(1);
+    opacity: 1;
+  }
+  55% {
+    transform: scaleY(1);
+  }
+  100% {
+    transform: scaleY(0);
+    opacity: 0;
+  }
+}
+.project-wrapper::after {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 18px;
+
+  background: linear-gradient(
+    to bottom,
+    rgba(0,0,0,0.18),
+    transparent
+  );
+
+  animation: edgeFade 0.9s ease-out forwards;
+  pointer-events: none;
+  z-index: 2;
+}
+
+@keyframes edgeFade {
+  to {
+    opacity: 0;
+  }
+}
+
+
+
+
+/* 스크롤 방해 요소 제거 */
+.project-wrapper * {
+  box-sizing: border-box;
+}
+
+/* ======================
+   All Projects 링크
+====================== */
+.all-projects-link {
+  display: inline-block;
+  margin: 24px 0;
+  font-size: 18px;
+  letter-spacing: 0.18em;
+  font-weight: 600;
+  cursor: pointer;
+  position: relative;
+
+  /* shimmer 텍스트 */
+  background: linear-gradient(
+    120deg,
+    rgba(255,255,255,0.35) 0%,
+    rgba(255,255,255,1) 50%,
+    rgba(255,255,255,0.35) 100%
+  );
+  background-size: 200% auto;
+
+  color: transparent;
+  background-clip: text;
+  -webkit-background-clip: text;
+
+  animation: textShimmer 3.2s linear infinite;
+
+  /* hover 대비용 기본 상태 */
+  opacity: 0.85;
+  transition: transform 0.2s ease;
+}
+
+@keyframes textShimmer {
+  0% {
+    background-position: 200% center;
+  }
+  100% {
+    background-position: 0% center;
+  }
+}
+
+/* hover 시: 반짝 멈추고 살짝 내려옴 */
+.all-projects-link:hover {
+  animation-play-state: paused;
+  transform: translateY(2px);
+  opacity: 1;
+}
+
+/* background-clip 미지원 환경 대비 */
+@supports not (-webkit-background-clip: text) {
+  .all-projects-link {
+    color: rgba(255,255,255,0.9);
+    background: none;
+  }
+}
+
+
+
+
+/* ======================
+   상단 카테고리 영역
+====================== */
+
+.project-focus {
+  padding: 80px 0;
+}
+
+.top-categories {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+
+.bottom-categories {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 24px;
+  width: 66%;
+  margin: 40px auto 0;
+}
+/* 카테고리 카드 */
+
+.category-card {
+  position: relative;
+  min-height: 120px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border: 1px solid rgba(255,255,255,0.32);
+  border-radius: 8px;
+  cursor: pointer;
+
+  background: linear-gradient(
+    180deg,
+    rgba(255,255,255,0.02),
+    rgba(255,255,255,0.01)
+  );
+
+  transition:
+    transform 0.35s ease,
+    box-shadow 0.35s ease,
+    background-color 0.35s ease,
+    border-color 0.35s ease;
+}
+
+.category-card:hover {
+  transform: translateY(-8px);
+  border-color: rgba(255,255,255,0.45);
+
+  background: linear-gradient(
+    180deg,
+    rgba(255,255,255,0.06),
+    rgba(255,255,255,0.02)
+  );
+
+  box-shadow:
+    0 16px 40px rgba(0,0,0,0.6),
+    inset 0 0 0 1px rgba(255,255,255,0.25);
+  color:  rgba(255,255,255,0.95);
+}
+/* Personal */
+.top-categories .category-card:nth-child(1):hover {
+  border-color: rgba(120,180,255,0.6);
+  background: linear-gradient(
+    180deg,
+    rgba(120,180,255,0.08),
+    rgba(120,180,255,0.02)
+  );
+}
+
+/* React */
+.top-categories .category-card:nth-child(2):hover {
+  border-color: rgba(97,218,251,0.6);
+  background: linear-gradient(
+    180deg,
+    rgba(97,218,251,0.08),
+    rgba(97,218,251,0.02)
+  );
+}
+
+/* Team */
+.top-categories .category-card:nth-child(3):hover {
+  border-color: rgba(180,255,200,0.6);
+  background: linear-gradient(
+    180deg,
+    rgba(180,255,200,0.08),
+    rgba(180,255,200,0.02)
+  );
+}
+/* Copy */
+.bottom-categories .category-card:nth-child(1):hover {
+  border-color: rgba(255,200,140,0.6);
+  background: linear-gradient(
+    180deg,
+    rgba(255,200,140,0.08),
+    rgba(255,200,140,0.02)
+  );
+}
+
+/* Game */
+.bottom-categories .category-card:nth-child(2):hover {
+  border-color: rgba(255,120,120,0.6);
+  background: linear-gradient(
+    180deg,
+    rgba(255,120,120,0.08),
+    rgba(255,120,120,0.02)
+  );
+}
+
+
+
+/* 중앙 텍스트 */
+.focus-center {
+  margin: 60px 0;
+  text-align: center;
+  font-size: 22px;
+  opacity: 0.6;
+  font-weight: 300;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.45);
+}
+
+/* ======================
+   카테고리별 프로젝트
+====================== */
+
+.project-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 24px;
+  max-width: 1200px;
+  margin: 80px auto;
+}
+
+
+/* ======================
+   Project Card (Final)
+====================== */
+
+.project-card {
+  position: relative;
+  border: 1px solid rgba(255,255,255,0.28);
+  border-radius: 8px;
+  padding: 20px;
+  text-align: center;
+  cursor: pointer;
+
+  background: linear-gradient(
+    180deg,
+    rgba(255,255,255,0.025),
+    rgba(255,255,255,0.01)
+  );
+
+  transition:
+    transform 0.35s ease,
+    box-shadow 0.35s ease,
+    border-color 0.35s ease;
+}
+
+/* 카드 기본 텍스트 */
+.project-card h3 {
+  font-size: 18px;
+  margin-bottom: 8px;
+}
+
+.project-card p {
+  font-size: 13px;
+  opacity: 0.65;
+  transition: opacity 0.3s ease;
+}
+
+/* ======================
+   Hover 효과 (공통)
+====================== */
+
+.project-card:hover {
+  transform: translateY(-10px);
+
+  border-color: rgba(255,255,255,0.45);
+
+  background:
+    radial-gradient(
+      circle at 50% 30%,
+      rgba(255,255,255,0.08),
+      rgba(255,255,255,0.015) 60%
+    ),
+    linear-gradient(
+      180deg,
+      rgba(255,255,255,0.045),
+      rgba(255,255,255,0.015)
+    );
+
+  box-shadow:
+    0 18px 36px rgba(0,0,0,0.7),
+    inset 0 0 0 1px rgba(255,255,255,0.22);
+}
+.project-card:hover h3 {
+  text-shadow: 0 2px 6px rgba(255,255,255,0.15);
+}
+
+.project-card:hover p {
+  opacity: 0.85;
+}
+
+
+
+
+
+/* ======================
+   All Projects 영역
+====================== */
+
+.project-all {
+  margin-top: 160px;
+  margin-bottom: 50px;
+  opacity: 0;
+  transform: translateY(60px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.project-all.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.project-all-title {
+  text-align: center;
+  font-size: 26px;
+  margin-bottom: 60px;
+  opacity: 0.85;
+}
+
+.project-all-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 24px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* ======================
+   절대 넣으면 안 되는 것들
+====================== */
+
+/*
+❌ position: fixed
+❌ overflow: hidden
+❌ height: 100vh (wrapper 기준)
+*/
+body{
+  overflow: auto !important;
+}

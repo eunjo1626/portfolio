@@ -1,0 +1,16 @@
+/* ======================
+   Layout - 안정형
+====================== */
+
+.layout-root {
+  width: 100%;
+  min-height: 100vh;     /* 화면보다 작으면 채우고 */
+  overflow: visible;     /* ❗ 스크롤 차단 금지 */
+}
+
+.layout-main {
+  width: 100%;
+  max-width: 1200px;     /* 기존 container 역할 */
+  margin: 0 auto;
+  padding: 0 24px;
+}

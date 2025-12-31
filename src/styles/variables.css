@@ -1,0 +1,22 @@
+:root {
+  /* colors */
+  --color-bg: #0f0f0f;
+  --color-text: #eaeaea;
+  --color-muted: #999;
+  --color-accent: #4f46e5;
+
+  /* font */
+  --font-main: system-ui, -apple-system, BlinkMacSystemFont,
+               "Segoe UI", Roboto, sans-serif;
+  --font-mono: "JetBrains Mono", monospace;
+
+  /* spacing */
+  --space-xs: 4px;
+  --space-sm: 8px;
+  --space-md: 16px;
+  --space-lg: 32px;
+  --space-xl: 64px;
+
+  /* layout */
+  --max-width: 1200px;
+}
